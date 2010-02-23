@@ -32,17 +32,15 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newWorkoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.jympaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.kiboxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.workoutTreeView = new System.Windows.Forms.TreeView();
+            this.infoTextBox = new System.Windows.Forms.TextBox();
             this.workoutFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.workoutContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.workoutPartContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.workoutSongContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.workoutTreeView = new System.Windows.Forms.TreeView();
             this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.workoutPartContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addSongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.workoutSongContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editSongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.insertSongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.beforeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,7 +60,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(997, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1024, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -76,26 +74,9 @@
             // 
             // newWorkoutToolStripMenuItem
             // 
-            this.newWorkoutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.jympaToolStripMenuItem,
-            this.kiboxToolStripMenuItem});
             this.newWorkoutToolStripMenuItem.Name = "newWorkoutToolStripMenuItem";
-            this.newWorkoutToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.newWorkoutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newWorkoutToolStripMenuItem.Text = "New Workout";
-            // 
-            // jympaToolStripMenuItem
-            // 
-            this.jympaToolStripMenuItem.Name = "jympaToolStripMenuItem";
-            this.jympaToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
-            this.jympaToolStripMenuItem.Text = "Jympa";
-            this.jympaToolStripMenuItem.Click += new System.EventHandler(this.jympaToolStripMenuItem_Click);
-            // 
-            // kiboxToolStripMenuItem
-            // 
-            this.kiboxToolStripMenuItem.Name = "kiboxToolStripMenuItem";
-            this.kiboxToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
-            this.kiboxToolStripMenuItem.Text = "Ki-box";
-            this.kiboxToolStripMenuItem.Click += new System.EventHandler(this.kiboxToolStripMenuItem_Click);
             // 
             // splitContainer1
             // 
@@ -106,25 +87,48 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.workoutTreeView);
-            this.splitContainer1.Panel1.Controls.Add(this.textBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.infoTextBox);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.workoutFlowLayoutPanel);
-            this.splitContainer1.Size = new System.Drawing.Size(997, 552);
-            this.splitContainer1.SplitterDistance = 283;
+            this.splitContainer1.Size = new System.Drawing.Size(1024, 552);
+            this.splitContainer1.SplitterDistance = 290;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // workoutTreeView
+            // 
+            this.workoutTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.workoutTreeView.Location = new System.Drawing.Point(0, 0);
+            this.workoutTreeView.Name = "workoutTreeView";
+            this.workoutTreeView.Size = new System.Drawing.Size(290, 463);
+            this.workoutTreeView.TabIndex = 1;
+            this.workoutTreeView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.workoutTreeView_MouseDown);
+            // 
+            // infoTextBox
+            // 
+            this.infoTextBox.BackColor = System.Drawing.Color.White;
+            this.infoTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.infoTextBox.Location = new System.Drawing.Point(0, 463);
+            this.infoTextBox.Multiline = true;
+            this.infoTextBox.Name = "infoTextBox";
+            this.infoTextBox.ReadOnly = true;
+            this.infoTextBox.Size = new System.Drawing.Size(290, 89);
+            this.infoTextBox.TabIndex = 0;
             // 
             // workoutFlowLayoutPanel
             // 
+            this.workoutFlowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.workoutFlowLayoutPanel.AutoScroll = true;
             this.workoutFlowLayoutPanel.BackColor = System.Drawing.Color.White;
-            this.workoutFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.workoutFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.workoutFlowLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.workoutFlowLayoutPanel.Name = "workoutFlowLayoutPanel";
-            this.workoutFlowLayoutPanel.Size = new System.Drawing.Size(710, 552);
+            this.workoutFlowLayoutPanel.Size = new System.Drawing.Size(730, 552);
             this.workoutFlowLayoutPanel.TabIndex = 0;
+            this.workoutFlowLayoutPanel.WrapContents = false;
             // 
             // workoutContextMenuStrip
             // 
@@ -133,12 +137,25 @@
             this.workoutContextMenuStrip.Name = "workoutContextMenuStrip";
             this.workoutContextMenuStrip.Size = new System.Drawing.Size(118, 26);
             // 
+            // renameToolStripMenuItem
+            // 
+            this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
+            this.renameToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.renameToolStripMenuItem.Text = "Rename";
+            // 
             // workoutPartContextMenuStrip
             // 
             this.workoutPartContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addSongToolStripMenuItem});
             this.workoutPartContextMenuStrip.Name = "contextMenuStrip1";
-            this.workoutPartContextMenuStrip.Size = new System.Drawing.Size(153, 48);
+            this.workoutPartContextMenuStrip.Size = new System.Drawing.Size(126, 26);
+            // 
+            // addSongToolStripMenuItem
+            // 
+            this.addSongToolStripMenuItem.Name = "addSongToolStripMenuItem";
+            this.addSongToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.addSongToolStripMenuItem.Text = "Add song";
+            this.addSongToolStripMenuItem.Click += new System.EventHandler(this.addSongToolStripMenuItem_Click);
             // 
             // workoutSongContextMenuStrip
             // 
@@ -148,43 +165,10 @@
             this.workoutSongContextMenuStrip.Name = "contextMenuStrip1";
             this.workoutSongContextMenuStrip.Size = new System.Drawing.Size(133, 48);
             // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox1.Location = new System.Drawing.Point(0, 463);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(283, 89);
-            this.textBox1.TabIndex = 0;
-            // 
-            // workoutTreeView
-            // 
-            this.workoutTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.workoutTreeView.Location = new System.Drawing.Point(0, 0);
-            this.workoutTreeView.Name = "workoutTreeView";
-            this.workoutTreeView.Size = new System.Drawing.Size(283, 463);
-            this.workoutTreeView.TabIndex = 1;
-            this.workoutTreeView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.workoutTreeView_MouseDown);
-            // 
-            // renameToolStripMenuItem
-            // 
-            this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
-            this.renameToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.renameToolStripMenuItem.Text = "Rename";
-            // 
-            // addSongToolStripMenuItem
-            // 
-            this.addSongToolStripMenuItem.Name = "addSongToolStripMenuItem";
-            this.addSongToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.addSongToolStripMenuItem.Text = "Add song";
-            this.addSongToolStripMenuItem.Click += new System.EventHandler(this.addSongToolStripMenuItem_Click);
-            // 
             // editSongToolStripMenuItem
             // 
             this.editSongToolStripMenuItem.Name = "editSongToolStripMenuItem";
-            this.editSongToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editSongToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.editSongToolStripMenuItem.Text = "Edit song";
             // 
             // insertSongToolStripMenuItem
@@ -193,26 +177,26 @@
             this.beforeToolStripMenuItem,
             this.afterToolStripMenuItem});
             this.insertSongToolStripMenuItem.Name = "insertSongToolStripMenuItem";
-            this.insertSongToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.insertSongToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.insertSongToolStripMenuItem.Text = "Insert song";
             // 
             // beforeToolStripMenuItem
             // 
             this.beforeToolStripMenuItem.Name = "beforeToolStripMenuItem";
-            this.beforeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.beforeToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.beforeToolStripMenuItem.Text = "Before";
             // 
             // afterToolStripMenuItem
             // 
             this.afterToolStripMenuItem.Name = "afterToolStripMenuItem";
-            this.afterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.afterToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.afterToolStripMenuItem.Text = "After";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(997, 576);
+            this.ClientSize = new System.Drawing.Size(1024, 576);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -239,10 +223,8 @@
         private System.Windows.Forms.FlowLayoutPanel workoutFlowLayoutPanel;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newWorkoutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem jympaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem kiboxToolStripMenuItem;
         private System.Windows.Forms.TreeView workoutTreeView;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox infoTextBox;
         private System.Windows.Forms.ContextMenuStrip workoutContextMenuStrip;
         private System.Windows.Forms.ContextMenuStrip workoutPartContextMenuStrip;
         private System.Windows.Forms.ContextMenuStrip workoutSongContextMenuStrip;

@@ -39,11 +39,18 @@ namespace WorkoutPlanner
             }
         }
 
-        public WorkoutPart AddPart(string name)
+        public WorkoutPart AddPart(string name, string description)
         {
-            WorkoutPart part = new WorkoutPart(name);
+            WorkoutPart part = new WorkoutPart(name, description);
             Parts.Add(part);
 
+            return part;
+        }
+
+        public WorkoutPart AddPart(string name, string description, int groupId)
+        {
+            WorkoutPart part = AddPart(name, description);
+            part.GroupId = groupId;
             return part;
         }
 
@@ -99,6 +106,11 @@ namespace WorkoutPlanner
             }
 
             return result;
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

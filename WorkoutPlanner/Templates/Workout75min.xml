@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<WorkoutTemplate>
+	<Name>Medel 75 min</Name>
+	<WorkoutTemplateParts>
+		<WorkoutTemplatePart>
+			<Name>Uppvärmning</Name>
+			<Description>10 minuter</Description>
+		</WorkoutTemplatePart>
+		<WorkoutTemplatePart>
+			<Name>Rörlighet 1</Name>
+			<Description>3-4 minuter</Description>
+		</WorkoutTemplatePart>
+		<WorkoutTemplatePart Group="0">
+			<Name>Styrka 1</Name>
+			<Description>8-9 minuter</Description>
+		</WorkoutTemplatePart>
+		<WorkoutTemplatePart Group="1">
+			<Name>Kondition 1</Name>
+			<Description>8-9 minuter</Description>
+		</WorkoutTemplatePart>
+		<WorkoutTemplatePart>
+			<Name>Övergång</Name>
+			<Description>2-3 minuter.</Description>
+		</WorkoutTemplatePart>
+		<WorkoutTemplatePart Group="0">
+			<Name>Styrka 2</Name>
+			<Description>8-9 minuter</Description>
+		</WorkoutTemplatePart>
+		<WorkoutTemplatePart Group="1">
+			<Name>Kondition 2</Name>
+			<Description>8-9 minuter</Description>
+		</WorkoutTemplatePart>
+		<WorkoutTemplatePart>
+			<Name>Nedvarvning</Name>
+			<Description>ca 2 minuter</Description>
+		</WorkoutTemplatePart>
+		<WorkoutTemplatePart>
+			<Name>Rörlighet 2</Name>
+			<Description>13-14 minuter</Description>
+		</WorkoutTemplatePart>
+		<WorkoutTemplatePart>
+			<Name>Avslappning</Name>
+			<Description>2-3 minuter</Description>
+		</WorkoutTemplatePart>
+	</WorkoutTemplateParts>
+	<WorkoutTemplateGroups>
+		<WorkoutTemplateGroup ID="0">
+			<Name>Styrka</Name>
+			<Description></Description>
+		</WorkoutTemplateGroup>
+		<WorkoutTemplateGroup ID="1">
+			<Name>Kondition</Name>
+			<Description></Description>
+		</WorkoutTemplateGroup>
+	</WorkoutTemplateGroups>
+</WorkoutTemplate>

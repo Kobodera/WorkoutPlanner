@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<WorkoutTemplate>
+	<Name>Ki-box 75 min</Name>
+	<WorkoutTemplateParts>
+		<WorkoutTemplatePart>
+			<Name>Andning</Name>
+			<Description>Ca 30 sek.</Description>
+		</WorkoutTemplatePart>
+		<WorkoutTemplatePart>
+			<Name>Grundläggande instruktioner</Name>
+			<Description>3-4 minuter. Gå igenom grundslagen. Raka, krokar, uppercut, knäspark, grenspark.</Description>
+		</WorkoutTemplatePart>
+		<WorkoutTemplatePart>
+			<Name>Uppvärmning</Name>
+			<Description>10 minuter.</Description>
+		</WorkoutTemplatePart>
+		<WorkoutTemplatePart>
+			<Name>Rörlighet 1</Name>
+			<Description>3-4 minuter. Musiken måste vara orientaliskt inspirerad.</Description>
+		</WorkoutTemplatePart>
+		<WorkoutTemplatePart>
+			<Name>Styrka</Name>
+			<Description>6-7 minuter. Gärna dojo känsla i styrkan.</Description>
+		</WorkoutTemplatePart>
+		<WorkoutTemplatePart>
+			<Name>Parbildning och instruktion</Name>
+			<Description>2 minuter. I denna låt ingår både att bilda par och att instruera den första konditionslåten.</Description>
+		</WorkoutTemplatePart>
+		<WorkoutTemplatePart>
+			<Name>Instruktion</Name>
+			<Description>Ca 60 sekunder. När en ny låt instrueras för första gången är instruktionen lite längre än när man bara byter handskar.</Description>
+		</WorkoutTemplatePart>
+		<WorkoutTemplatePart>
+			<Name>Handskbyte</Name>
+			<Description>Ca 20-30 sekunder. Deltagarna byter handskar och mitsar med varandra.</Description>
+		</WorkoutTemplatePart>
+		<WorkoutTemplatePart>
+			<Name>Kondition/kampsportstekniker</Name>
+			<Description>Ca 35 minuter totalt inklusive instruktioner och byten. I programmet väljer du bara vilka 5 låtar du vill använda dig av så räknar programmet ut tiden med instruktioner och byten automatiskt.</Description>
+		</WorkoutTemplatePart>
+		<WorkoutTemplatePart>
+			<Name>Nedvarvning</Name>
+			<Description>2-3 minuter.</Description>
+		</WorkoutTemplatePart>
+		<WorkoutTemplatePart>
+			<Name>Rörlighet/Qi gong</Name>
+			<Description>2-3 minuter.</Description>
+		</WorkoutTemplatePart>
+		<WorkoutTemplatePart>
+			<Name>Avspänning/meditation</Name>
+			<Description>2-3 minuter.</Description>
+		</WorkoutTemplatePart>
+		<WorkoutTemplatePart>
+			<Name>Rörlighet/Stretch</Name>
+			<Description>6-7 minuter.</Description>
+		</WorkoutTemplatePart>
+	</WorkoutTemplateParts>
+</WorkoutTemplate>

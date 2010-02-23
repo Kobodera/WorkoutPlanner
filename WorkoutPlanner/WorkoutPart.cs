@@ -8,8 +8,8 @@ namespace WorkoutPlanner
     public class WorkoutPart
     {
         public string Name { get; set; }
-        public string Instructions { get; set; }
-        public int? MaxSongs { get; set; }
+        public string Description { get; set; }
+        public int GroupId { get; set; }
 
         public List<WorkoutSong> Songs;
 
@@ -24,21 +24,10 @@ namespace WorkoutPlanner
             this.Name = name;
         }
 
-        public WorkoutPart(string name, string instructions)
+        public WorkoutPart(string name, string description)
             : this(name)
         {
-            Instructions = instructions;
-        }
-
-        public WorkoutPart(string name, string instructions, int maxSongs)
-            : this(name, instructions)
-        {
-            MaxSongs = maxSongs;
-        }
-
-        public WorkoutPart(string name, int maxSongs)
-            : this(name, string.Empty, maxSongs)
-        {
+            Description = description;
         }
 
         public string Length

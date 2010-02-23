@@ -17,6 +17,8 @@ namespace WorkoutPlanner
         {
             InitializeComponent();
 
+            LoadTemplates();
+
             WorkoutSong song = new WorkoutSong()
             {
                 Track = 1,
@@ -67,21 +69,50 @@ namespace WorkoutPlanner
             workoutFlowLayoutPanel.Controls.AddRange(new Control[] { label3, label1, label2 });
         }
 
-        private void jympaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LoadTemplates()
         {
-            workout = new Workout(WorkoutType.Workout);
-            workout.AddPart(WorkoutResources.Warmup);
-            workout.AddPart(string.Format(WorkoutResources.Mobility, 1));
-            workout.AddPart(string.Format(WorkoutResources.Strength, 1));
-            workout.AddPart(string.Format(WorkoutResources.Fittnes, 1));
-            workout.AddPart(string.Format(WorkoutResources.Crossover, ""));
-            workout.AddPart(string.Format(WorkoutResources.Strength, 2));
-            workout.AddPart(string.Format(WorkoutResources.Fittnes, 2));
-            workout.AddPart(WorkoutResources.Calmdown);
-            workout.AddPart(string.Format(WorkoutResources.Mobility, 2));
-            workout.AddPart(WorkoutResources.Relaxation);
+            List<WorkoutTemplate> templates = WorkoutTemplate.GetTemplates();
+
+            foreach (WorkoutTemplate template in templates)
+            {
+                ToolStripMenuItem item = new ToolStripMenuItem(template.Name);
+                item.Tag = template;
+                item.Click += new EventHandler(item_Click);
+
+                newWorkoutToolStripMenuItem.DropDownItems.Add(item);
+            }
+        }
+
+        void item_Click(object sender, EventArgs e)
+        {
+            WorkoutTemplate template = (WorkoutTemplate)((ToolStripMenuItem)sender).Tag;
+            workout = new Workout(template.Name);
+            foreach (WorkoutTemplatePart part in template.WorkoutTemplateParts)
+            {
+                if (part.GroupId.HasValue)
+                    workout.AddPart(part.Name, part.Description, part.GroupId.Value);
+                else
+                    workout.AddPart(part.Name, part.Description);
+            }
 
             RefreshAll();
+        }
+
+        private void jympaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //workout = new Workout(WorkoutType.Workout);
+            //workout.AddPart(WorkoutResources.Warmup);
+            //workout.AddPart(string.Format(WorkoutResources.Mobility, 1));
+            //workout.AddPart(string.Format(WorkoutResources.Strength, 1));
+            //workout.AddPart(string.Format(WorkoutResources.Fittnes, 1));
+            //workout.AddPart(string.Format(WorkoutResources.Crossover, ""));
+            //workout.AddPart(string.Format(WorkoutResources.Strength, 2));
+            //workout.AddPart(string.Format(WorkoutResources.Fittnes, 2));
+            //workout.AddPart(WorkoutResources.Calmdown);
+            //workout.AddPart(string.Format(WorkoutResources.Mobility, 2));
+            //workout.AddPart(WorkoutResources.Relaxation);
+
+            //RefreshAll();
         }
 
         private void RefreshAll()
@@ -164,21 +195,21 @@ namespace WorkoutPlanner
 
         private void kiboxToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            workout = new Workout(WorkoutType.KiBox);
-            workout.AddPart(WorkoutResources.Breathing);
-            workout.AddPart(WorkoutResources.BasicInstructions);
-            workout.AddPart(WorkoutResources.Warmup);
-            workout.AddPart(string.Format(WorkoutResources.Mobility, 1));
-            workout.AddPart(string.Format(WorkoutResources.Strength, ""));
-            workout.AddPart(WorkoutResources.FormPairs);
-            workout.AddPart(WorkoutResources.Instructions);
-            workout.AddPart(WorkoutResources.Switch);
-            workout.AddPart(string.Format(WorkoutResources.KiBox));
-            workout.AddPart(WorkoutResources.Calmdown);
-            workout.AddPart(WorkoutResources.ChiGong);
-            workout.AddPart(string.Format(WorkoutResources.Mobility, 2));
+            //workout = new Workout(WorkoutType.KiBox);
+            //workout.AddPart(WorkoutResources.Breathing);
+            //workout.AddPart(WorkoutResources.BasicInstructions);
+            //workout.AddPart(WorkoutResources.Warmup);
+            //workout.AddPart(string.Format(WorkoutResources.Mobility, 1));
+            //workout.AddPart(string.Format(WorkoutResources.Strength, ""));
+            //workout.AddPart(WorkoutResources.FormPairs);
+            //workout.AddPart(WorkoutResources.Instructions);
+            //workout.AddPart(WorkoutResources.Switch);
+            //workout.AddPart(string.Format(WorkoutResources.KiBox));
+            //workout.AddPart(WorkoutResources.Calmdown);
+            //workout.AddPart(WorkoutResources.ChiGong);
+            //workout.AddPart(string.Format(WorkoutResources.Mobility, 2));
 
-            RefreshAll();
+            //RefreshAll();
         }
 
         private void workoutTreeView_MouseDown(object sender, MouseEventArgs e)
@@ -188,6 +219,13 @@ namespace WorkoutPlanner
             if (node != null)
             {
                 workoutTreeView.SelectedNode = node;
+
+                if (node.Tag is WorkoutPart)
+                {
+                    infoTextBox.Text = ((WorkoutPart)node.Tag).Description;
+                }
+                else
+                    infoTextBox.Text = string.Empty;
             }
         }
 
