@@ -66,6 +66,14 @@ namespace WorkoutPlanner
             Parts.Remove(part);
         }
 
+        public void DeleteSong(WorkoutSong song)
+        {
+            foreach (var part in Parts)
+            {
+                part.Songs.Remove(song);
+            }
+        }
+
         public List<object> GetWorkoutObjectList()
         {
             List<object> result = new List<object>();

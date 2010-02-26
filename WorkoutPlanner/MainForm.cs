@@ -18,55 +18,6 @@ namespace WorkoutPlanner
             InitializeComponent();
 
             LoadTemplates();
-
-            WorkoutSong song = new WorkoutSong()
-            {
-                Track = 1,
-                Artist = "Iron Maiden",
-                Album = "A Real Dead One",
-                Seconds = 180,
-                Title = "Number of the beast",
-                //FromSecond = 15,
-                //ToSecond = 180,
-                Bpm1 = 100,
-                Bpm2 = 200
-            };
-
-            Label label1 = new Label();
-            label1.Font = new Font(FontFamily.GenericMonospace, 8);
-            label1.AutoSize = true;
-            label1.Text = song.ToString();
-
-            WorkoutSong song2 = new WorkoutSong()
-            {
-                Track = 20,
-                Artist = "Avril Lavinge",
-                Album = "This is my life",
-                Seconds = 180,
-                Title = "Shoot me up stranger",
-                FromSecond = 10,
-                //ToSecond = 180,
-            };
-
-            Label label2 = new Label();
-            label2.Font = new Font(FontFamily.GenericMonospace, 8);
-            label2.AutoSize = true;
-            label2.Text = song2.ToString();
-
-            WorkoutPart part = new WorkoutPart()
-            {
-                Name = "Uppvärmning"
-            };
-
-            part.Songs.Add(song);
-            part.Songs.Add(song2);
-
-            Label label3 = new Label();
-            label3.Font = new Font(FontFamily.GenericMonospace, 8);
-            label3.AutoSize = true;
-            label3.Text = part.ToString();
-
-            workoutFlowLayoutPanel.Controls.AddRange(new Control[] { label3, label1, label2 });
         }
 
         private void LoadTemplates()
@@ -98,23 +49,6 @@ namespace WorkoutPlanner
             RefreshAll();
         }
 
-        private void jympaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //workout = new Workout(WorkoutType.Workout);
-            //workout.AddPart(WorkoutResources.Warmup);
-            //workout.AddPart(string.Format(WorkoutResources.Mobility, 1));
-            //workout.AddPart(string.Format(WorkoutResources.Strength, 1));
-            //workout.AddPart(string.Format(WorkoutResources.Fittnes, 1));
-            //workout.AddPart(string.Format(WorkoutResources.Crossover, ""));
-            //workout.AddPart(string.Format(WorkoutResources.Strength, 2));
-            //workout.AddPart(string.Format(WorkoutResources.Fittnes, 2));
-            //workout.AddPart(WorkoutResources.Calmdown);
-            //workout.AddPart(string.Format(WorkoutResources.Mobility, 2));
-            //workout.AddPart(WorkoutResources.Relaxation);
-
-            //RefreshAll();
-        }
-
         private void RefreshAll()
         {
             int index = 1;
@@ -140,9 +74,9 @@ namespace WorkoutPlanner
                     song.Track = index;
                     index++;
 
-                    ctrls.Add(CreateLabel(song.ToString(), song));
                     var songNode = AddNode(ref partNode, song.ToShortString(), song);
                     songNode.ContextMenuStrip = workoutSongContextMenuStrip;
+                    ctrls.Add(CreateLabel(song.ToString(), workoutSongContextMenuStrip, songNode));
                 }
                 ctrls.Add(CreateLabel("", null));
             }
@@ -150,18 +84,14 @@ namespace WorkoutPlanner
             workoutTreeView.Nodes.Add(node);
             workoutTreeView.ExpandAll();
 
-            //List<string> workoutText = workout.GetWorkoutAsText();
-            //foreach (string str in workoutText)
-            //{
-            //    Label lbl = new Label();
-            //    lbl.Font = new Font(FontFamily.GenericMonospace, 8);
-            //    lbl.AutoSize = true;
-            //    lbl.Text = str;
-
-            //    ctrls.Add(lbl);
-            //}
-
             workoutFlowLayoutPanel.Controls.AddRange(ctrls.ToArray());
+        }
+
+        private Label CreateLabel(string text, ContextMenuStrip strip, object tag)
+        {
+            Label result = CreateLabel(text, tag);
+            result.ContextMenuStrip = strip;
+            return result;
         }
 
         private Label CreateLabel(string text, object tag)
@@ -178,9 +108,9 @@ namespace WorkoutPlanner
         void lbl_DoubleClick(object sender, EventArgs e)
         {
             Label lbl = (Label)sender;
-            if (lbl.Tag is WorkoutSong)
+            if (lbl.Tag is TreeNode)
             {
-                MessageBox.Show(((WorkoutSong)lbl.Tag).ToShortString());
+                EditWorkoutSong((WorkoutSong)((TreeNode)lbl.Tag).Tag);
             }
         }
 
@@ -191,25 +121,6 @@ namespace WorkoutPlanner
             parent.Nodes.Add(node);
 
             return node;
-        }
-
-        private void kiboxToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //workout = new Workout(WorkoutType.KiBox);
-            //workout.AddPart(WorkoutResources.Breathing);
-            //workout.AddPart(WorkoutResources.BasicInstructions);
-            //workout.AddPart(WorkoutResources.Warmup);
-            //workout.AddPart(string.Format(WorkoutResources.Mobility, 1));
-            //workout.AddPart(string.Format(WorkoutResources.Strength, ""));
-            //workout.AddPart(WorkoutResources.FormPairs);
-            //workout.AddPart(WorkoutResources.Instructions);
-            //workout.AddPart(WorkoutResources.Switch);
-            //workout.AddPart(string.Format(WorkoutResources.KiBox));
-            //workout.AddPart(WorkoutResources.Calmdown);
-            //workout.AddPart(WorkoutResources.ChiGong);
-            //workout.AddPart(string.Format(WorkoutResources.Mobility, 2));
-
-            //RefreshAll();
         }
 
         private void workoutTreeView_MouseDown(object sender, MouseEventArgs e)
@@ -244,6 +155,54 @@ namespace WorkoutPlanner
             }
 
             RefreshAll();
+        }
+
+        private void EditWorkoutSong(WorkoutSong song)
+        {
+            using (WorkoutSongForm form = new WorkoutSongForm())
+            {
+                form.Song = song;
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    //Updates song
+                    var updateSong = form.Song;
+
+                    RefreshAll();
+                }
+            }
+        }
+
+        private void editSongToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditWorkoutSong(GetWorkoutSong((ToolStripMenuItem)sender));
+        }
+
+        private void deleteSongToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            workout.DeleteSong(GetWorkoutSong((ToolStripMenuItem)sender));
+            RefreshAll();
+        }
+
+        private WorkoutSong GetWorkoutSong(ToolStripMenuItem item)
+        {
+            var temp = GetParentObject(item);
+            if (temp is Label)
+            {
+                return (WorkoutSong)((TreeNode)((Label)temp).Tag).Tag;
+            }
+            else if (temp is TreeView)
+            {
+                return (WorkoutSong)((TreeView)temp).SelectedNode.Tag;
+            }
+
+            MessageBox.Show(((TreeView)temp).Nodes[0].Text);
+
+            return null;
+        }
+
+        private object GetParentObject(ToolStripMenuItem item)
+        {
+            return ((ContextMenuStrip)item.Owner).SourceControl;
         }
     }
 }

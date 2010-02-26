@@ -45,6 +45,8 @@
             this.insertSongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.beforeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteSongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -161,15 +163,18 @@
             // 
             this.workoutSongContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editSongToolStripMenuItem,
-            this.insertSongToolStripMenuItem});
+            this.insertSongToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.deleteSongToolStripMenuItem});
             this.workoutSongContextMenuStrip.Name = "contextMenuStrip1";
-            this.workoutSongContextMenuStrip.Size = new System.Drawing.Size(133, 48);
+            this.workoutSongContextMenuStrip.Size = new System.Drawing.Size(153, 98);
             // 
             // editSongToolStripMenuItem
             // 
             this.editSongToolStripMenuItem.Name = "editSongToolStripMenuItem";
-            this.editSongToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.editSongToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.editSongToolStripMenuItem.Text = "Edit song";
+            this.editSongToolStripMenuItem.Click += new System.EventHandler(this.editSongToolStripMenuItem_Click);
             // 
             // insertSongToolStripMenuItem
             // 
@@ -191,6 +196,18 @@
             this.afterToolStripMenuItem.Name = "afterToolStripMenuItem";
             this.afterToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.afterToolStripMenuItem.Text = "After";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // deleteSongToolStripMenuItem
+            // 
+            this.deleteSongToolStripMenuItem.Name = "deleteSongToolStripMenuItem";
+            this.deleteSongToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteSongToolStripMenuItem.Text = "Delete song";
+            this.deleteSongToolStripMenuItem.Click += new System.EventHandler(this.deleteSongToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -234,6 +251,8 @@
         private System.Windows.Forms.ToolStripMenuItem insertSongToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem beforeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem afterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem deleteSongToolStripMenuItem;
 
     }
 }
