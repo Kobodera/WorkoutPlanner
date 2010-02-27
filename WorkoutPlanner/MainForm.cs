@@ -67,8 +67,9 @@ namespace WorkoutPlanner
             {
                 var partNode = AddNode(ref node, part.Name, part);
                 partNode.ContextMenuStrip = workoutPartContextMenuStrip;
-                ctrls.Add(CreateLabel(part.ToString(), part));
-
+                Label partLabel = CreateLabel(part.ToString(), workoutPartContextMenuStrip, part);
+                partLabel.MouseDoubleClick += new MouseEventHandler(partLabel_MouseDoubleClick);
+                ctrls.Add(partLabel);
                 foreach (var song in part.Songs)
                 {
                     song.Track = index;
@@ -85,6 +86,18 @@ namespace WorkoutPlanner
             workoutTreeView.ExpandAll();
 
             workoutFlowLayoutPanel.Controls.AddRange(ctrls.ToArray());
+        }
+
+        void partLabel_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            WorkoutSong song = AddWorkoutSong();
+
+            if (song != null)
+            {
+                ((WorkoutPart)((Label)sender).Tag).AddSong(song);
+            }
+
+            RefreshAll();
         }
 
         private Label CreateLabel(string text, ContextMenuStrip strip, object tag)
@@ -146,15 +159,36 @@ namespace WorkoutPlanner
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    TreeNode temp = workoutTreeView.SelectedNode;
+                    object parent = GetParentObject((ToolStripMenuItem)sender);
 
-                    ((WorkoutPart)temp.Tag).AddSong(form.Song);
-                    AddNode(ref temp, form.Song.ToShortString(), form.Song);
-                    temp.Expand();
+                    if (parent is Label)
+                    {
+                        ((WorkoutPart)((Label)parent).Tag).AddSong(form.Song);
+                    }
+                    else
+                    {
+                        TreeNode temp = workoutTreeView.SelectedNode;
+
+                        ((WorkoutPart)temp.Tag).AddSong(form.Song);
+                        temp.Expand();
+                    }
                 }
             }
 
             RefreshAll();
+        }
+
+        private WorkoutSong AddWorkoutSong()
+        {
+            using (WorkoutSongForm form = new WorkoutSongForm())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    return form.Song;
+                }
+            }
+
+            return null;
         }
 
         private void EditWorkoutSong(WorkoutSong song)
@@ -195,14 +229,34 @@ namespace WorkoutPlanner
                 return (WorkoutSong)((TreeView)temp).SelectedNode.Tag;
             }
 
-            MessageBox.Show(((TreeView)temp).Nodes[0].Text);
-
             return null;
         }
 
         private object GetParentObject(ToolStripMenuItem item)
         {
             return ((ContextMenuStrip)item.Owner).SourceControl;
+        }
+
+        private void workoutTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Node != null)
+            {
+                if (e.Node.Tag is WorkoutSong)
+                {
+                    EditWorkoutSong((WorkoutSong)e.Node.Tag);
+                }
+                else if (e.Node.Tag is WorkoutPart)
+                {
+                    using (WorkoutSongForm form = new WorkoutSongForm())
+                    {
+                        if (form.ShowDialog() == DialogResult.OK)
+                        {
+                            ((WorkoutPart)e.Node.Tag).AddSong(form.Song);
+                        }
+                    }
+                }
+                RefreshAll();
+            }
         }
     }
 }

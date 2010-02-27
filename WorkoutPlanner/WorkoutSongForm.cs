@@ -79,17 +79,22 @@ namespace WorkoutPlanner
         private int GetLenghtInSeconds(string length)
         {
             int temp = 0;
-            string[] lenghtStrings = length.Split(':', ',', '.');
+            string[] lengthStrings = length.Split(':', ',', '.');
 
             int minutes = 0;
             int seconds = 0;
 
-            if (lenghtStrings.Length == 2)
+            if (lengthStrings.Length == 2)
             {
-                if (int.TryParse(lenghtStrings[0], out temp))
+                if (int.TryParse(lengthStrings[0], out temp))
                     minutes = temp;
 
-                if (int.TryParse(lenghtStrings[1], out temp))
+                if (int.TryParse(lengthStrings[1], out temp))
+                    seconds = temp;
+            }
+            else if (lengthStrings.Length == 1)
+            {
+                if (int.TryParse(lengthStrings[0], out temp))
                     seconds = temp;
             }
 

@@ -101,10 +101,13 @@
             // workoutTreeView
             // 
             this.workoutTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.workoutTreeView.FullRowSelect = true;
+            this.workoutTreeView.HideSelection = false;
             this.workoutTreeView.Location = new System.Drawing.Point(0, 0);
             this.workoutTreeView.Name = "workoutTreeView";
             this.workoutTreeView.Size = new System.Drawing.Size(290, 463);
             this.workoutTreeView.TabIndex = 1;
+            this.workoutTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.workoutTreeView_NodeMouseDoubleClick);
             this.workoutTreeView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.workoutTreeView_MouseDown);
             // 
             // infoTextBox
@@ -167,7 +170,7 @@
             this.toolStripMenuItem1,
             this.deleteSongToolStripMenuItem});
             this.workoutSongContextMenuStrip.Name = "contextMenuStrip1";
-            this.workoutSongContextMenuStrip.Size = new System.Drawing.Size(153, 98);
+            this.workoutSongContextMenuStrip.Size = new System.Drawing.Size(137, 76);
             // 
             // editSongToolStripMenuItem
             // 
